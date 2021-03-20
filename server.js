@@ -3,11 +3,16 @@ const connectDB = require('./db');
 
 const app = express();
 
+// Init Middleware
+// app.use(): mounts middleware(express.json()) to the route(defualt: '/')
+// express.json(): parses incoming requests with JSON payloads
+app.use(express.json());
+
 connectDB();
 
-app.get('/', (req, res) => {
-  res.send('API running');
-});
+app.use('/api/auth', require('./routes/api/auth'));
+app.use('/api/todo', require('./routes/api/todo'));
+app.use('/api/user', require('./routes/api/user'));
 
 const PORT = process.env.PORT || 5000;
 

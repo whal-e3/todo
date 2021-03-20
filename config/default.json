@@ -1,3 +1,4 @@
 {
-  "mongoURI": "mongodb+srv://eric:8979@testcluster1.2fghh.mongodb.net/TODO?retryWrites=true&w=majority"
+  "mongoURI": "mongodb+srv://eric:8979@testcluster1.2fghh.mongodb.net/TODO?retryWrites=true&w=majority",
+  "jwtSecret": "todosecrettoken"
 }
