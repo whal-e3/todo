@@ -8,4 +8,8 @@ router.get('/', (req, res) => {
   res.send('todo route');
 });
 
+// @route    GET api/todo
+// @desc     Get a todo
+// @access   public
+
 module.exports = router;
