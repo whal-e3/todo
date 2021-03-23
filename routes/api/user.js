@@ -8,10 +8,12 @@ const normalize = require('normalize-url');
 const config = require('config');
 // model
 const User = require('../../models/User');
+const Todos = require('../../models/Todos');
 
 // @route    POST api/user
-// @desc     Register user
+// @desc     Register user & Init todo list
 // @access   public
+
 router.post(
   '/',
   [
@@ -74,6 +76,11 @@ router.post(
           res.json({ token });
         }
       );
+
+      // Init todo list
+      const todos = new Todos();
+
+      await todos.save();
     } catch (err) {
       console.error(err.message);
       res.status(500).send('Server error');
