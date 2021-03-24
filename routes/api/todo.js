@@ -44,9 +44,34 @@ router.post(
 );
 
 // @route    PUT api/todo/:item_id
-// @desc     Put a todo item in list
+// @desc     Update a todo item in list
 // @access   private
-router.put('/', [auth], async (req, res) => {});
+router.put(
+  '/:item_id',
+  [auth, [check('content', 'Content is required').not().isEmpty()]],
+  async (req, res) => {
+    try {
+      const user = await User.findById(req.userId.id);
+      const item = user.todo.find(item => item.id === req.params.item_id);
+
+      if (!item) {
+        return res.status(404).json({ msg: 'Comment does not exist' });
+      }
+
+      const { content, location } = req.body;
+
+      item.content = content;
+      item.location = location;
+
+      await user.save();
+
+      return res.json(user.todo);
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send('Server Error');
+    }
+  }
+);
 
 // @route    DELETE api/todo/:item_id
 // @desc     Delete a todo item in list
