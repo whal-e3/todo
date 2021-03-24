@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const { check, validationResult } = require('express-validator');
-const normalize = require('normalize-url');
 const config = require('config');
 // middleware
 const auth = require('../../middleware/auth');
@@ -55,7 +54,7 @@ router.put(
       const item = user.todo.find(item => item.id === req.params.item_id);
 
       if (!item) {
-        return res.status(404).json({ msg: 'Comment does not exist' });
+        return res.status(404).json({ msg: 'item does not exist' });
       }
 
       const { content, location } = req.body;
@@ -82,7 +81,7 @@ router.delete('/:item_id', auth, async (req, res) => {
     const item = user.todo.find(item => item.id === req.params.item_id);
 
     if (!item) {
-      return res.status(404).json({ msg: 'Comment does not exist' });
+      return res.status(404).json({ msg: 'item does not exist' });
     }
 
     user.todo = user.todo.filter(({ id }) => id !== req.params.item_id);
