@@ -1,0 +1,53 @@
+* {
+  text-decoration: none;
+  color: rgb(88, 88, 88);
+}
+
+.fas {
+  color: rgb(87, 92, 200);
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.title {
+  font-size: 5rem;
+  margin: 0;
+}
+.menu {
+  font-size: 2.5rem;
+}
+
+/* < Landing > */
+
+.quote {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  position: absolute;
+  top: 25vh;
+  margin: 0 auto;
+}
+
+.quote > * {
+  text-align: center;
+}
+
+/* </ Landing > */
+
+
+/* mobile */
+
+@media (max-width: 767px) {
+  .title {
+    font-size: 4rem;
+  }
+  .menu {
+    font-size: 1.8rem;
+  }
+  .quote {
+    top: 20vh;
+  }
+}

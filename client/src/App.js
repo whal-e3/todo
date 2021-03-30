@@ -9,13 +9,15 @@ import './App.css';
 
 const App = () => {
   return (
-    <Router>
-      <Navbar />
-      <Switch>
-        <Route exact path='/' component={Landing} />
-        <Route component={Routes} />
-      </Switch>
-    </Router>
+    <Fragment>
+      <Router>
+        <Navbar />
+        <Switch>
+          <Route exact path='/' component={Landing} />
+          <Route component={Routes} />
+        </Switch>
+      </Router>
+    </Fragment>
   );
 };
 
