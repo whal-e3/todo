@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 
 import { Link } from 'react-router-dom';
 
-export const Navbar = () => {
+const Navbar = () => {
   return (
-    <Fragment>
+    <div className='container'>
       <div className='navbar'>
         <h1 className='title'>
           {' '}
@@ -13,13 +13,13 @@ export const Navbar = () => {
         </h1>
 
         <div className='menu'>
-          <Link to='#'>SignUp</Link>
+          <Link to='/register'>SignUp</Link>
           {' | '}
-          <Link to='#'>Login</Link>
+          <Link to='/login'>Login</Link>
         </div>
       </div>
       <hr style={{ marginBottom: '1rem', marginTop: '1rem' }} />
-    </Fragment>
+    </div>
   );
 };
 

@@ -10,10 +10,10 @@
 .navbar {
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 .title {
-  font-size: 5rem;
+  font-size: 4.5rem;
   margin: 0;
 }
 .menu {
@@ -26,9 +26,8 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  position: absolute;
+  position: relative;
   top: 25vh;
-  margin: 0 auto;
 }
 
 .quote > * {
