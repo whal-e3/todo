@@ -52,7 +52,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
           <label>Email</label>
           <input
             className='u-full-width'
-            type='text'
+            type='email'
             value={email}
             name='email'
             onChange={e => onChange(e)}
@@ -99,6 +99,8 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
 
 Register.propTypes = {
   setAlert: PropTypes.func.isRequired,
+  register: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool,
 };
 
 const mapStateToProps = state => ({

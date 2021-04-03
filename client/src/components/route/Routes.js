@@ -1,7 +1,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import PrivateRoute from './PrivateRoute';
-import PropTypes from 'prop-types';
 
 import Alert from '../layout/Alert';
 import Register from '../auth/Register';
