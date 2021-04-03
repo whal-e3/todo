@@ -47,6 +47,12 @@
 .todo-list {
 
 }
+.todo-item {
+  box-shadow:0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  padding: 2rem;
+  border-radius: 5px;
+  margin-bottom: 2rem;
+}
 .todo-info {
   display: flex;
   flex-wrap: nowrap;
@@ -94,5 +100,8 @@
   }
   .quote {
     top: 20vh;
+  }
+  .todo-item {
+    padding: 1rem;
   }
 }

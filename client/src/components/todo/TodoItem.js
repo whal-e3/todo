@@ -16,7 +16,6 @@ const TodoItem = () => {
           </div>
         </div>
       </div>
-      <hr />
     </Fragment>
   );
 };
