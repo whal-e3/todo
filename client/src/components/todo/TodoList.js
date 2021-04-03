@@ -1,8 +1,25 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-const TodoList = () => {
-  return <div>TodoList</div>;
+import TodoItem from './TodoItem';
+
+const TodoList = ({ isAuthenticated }) => {
+  return (
+    <Fragment>
+      <TodoItem />
+      <TodoItem />
+      <TodoItem />
+    </Fragment>
+  );
 };
 
-export default TodoList;
+TodoList.propTypes = {
+  isAuthenticated: PropTypes.bool,
+};
+
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
+
+export default connect(mapStateToProps)(TodoList);
