@@ -7,6 +7,27 @@
   color: rgb(87, 92, 200);
 }
 
+/* < Alert > */
+.alert {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem 0;
+  padding: 0.6rem;
+  font-size: 2rem;
+  border: 2px solid;
+  border-radius: 10px;
+}
+.alert-danger {
+  color: #dc3545;
+  border-color: #dc3545;
+}
+.alert-success {
+  color: #28a745;
+  border-color: #28a745;
+}
+/* </ Alert > */
+
 .navbar {
   display: flex;
   align-items: center;
@@ -21,7 +42,6 @@
 }
 
 /* < Landing > */
-
 .quote {
   display: flex;
   flex-wrap: wrap;
@@ -33,12 +53,10 @@
 .quote > * {
   text-align: center;
 }
-
 /* </ Landing > */
 
 
 /* mobile */
-
 @media (max-width: 767px) {
   .title {
     font-size: 4rem;

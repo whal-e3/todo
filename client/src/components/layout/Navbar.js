@@ -13,7 +13,7 @@ const Navbar = () => {
         </h1>
 
         <div className='menu'>
-          <Link to='/register'>SignUp</Link>
+          <Link to='/register'>Sign Up</Link>
           {' | '}
           <Link to='/login'>Login</Link>
         </div>

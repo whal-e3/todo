@@ -9,6 +9,7 @@ import Login from '../auth/Login';
 const Routes = () => {
   return (
     <div className='container'>
+      <Alert />
       <Switch>
         <Route exact path='/register' component={Register} />
         <Route exact path='/login' component={Login} />
