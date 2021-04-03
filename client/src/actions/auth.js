@@ -1,6 +1,5 @@
 import axios from 'axios';
 import {
-  SET_ALERT,
   USER_LOADED,
   AUTH_ERROR,
   REGISTER_SUCCESS,
@@ -74,4 +73,9 @@ export const loginUser = ({ email, password }) => async dispatch => {
 // Logout User
 export const logoutUser = () => async dispatch => {
   dispatch({ type: LOGOUT });
+};
+
+// Signout User
+export const signoutUser = () => async dispatch => {
+  //TODO:
 };
