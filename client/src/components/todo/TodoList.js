@@ -10,6 +10,11 @@ const TodoList = ({ isAuthenticated }) => {
       <TodoItem />
       <TodoItem />
       <TodoItem />
+      <TodoItem />
+      <TodoItem />
+      <TodoItem />
+      <TodoItem />
+      <TodoItem />
     </Fragment>
   );
 };

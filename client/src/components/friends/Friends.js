@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+import { Link } from 'react-router-dom';
 
 const Friends = () => {
-  return <div>Friends</div>;
+  return (
+    <Fragment>
+      Profile
+      <Link to='/todo'>Back to TO:DO</Link>
+    </Fragment>
+  );
 };
 
 export default Friends;

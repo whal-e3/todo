@@ -28,6 +28,7 @@
 }
 /* </ Alert > */
 
+/* < Layout > */
 .navbar {
   display: flex;
   align-items: center;
@@ -40,6 +41,33 @@
 .menu {
   font-size: 2.5rem;
 }
+/* </ Layout > */
+
+/* < ToDo > */
+.todo-list {
+
+}
+.todo-info {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: stretch;
+}
+.todo-date, .todo-loc {
+  width: 40%;
+  margin: 0;
+}
+.todo-del {
+  background-color: #dc3545;
+  color: #fff;
+  text-align: center;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  margin: 0;
+  border-radius: 5px;
+  width: 5%;
+}
+/* </ ToDo > */
 
 /* < Landing > */
 .quote {
