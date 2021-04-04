@@ -26,7 +26,7 @@ const Login = ({ isAuthenticated, loginUser }) => {
 
   return (
     <Fragment>
-      <h2>Sign In</h2>
+      <h2>Log In</h2>
       <form onSubmit={e => onSubmit(e)}>
         <div>
           <label>Email</label>
