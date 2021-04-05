@@ -1,31 +1,33 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import Spinner from '../layout/Spinner';
+import { loadUser } from '../../actions/auth';
 import TodoItem from './TodoItem';
 
-const TodoList = ({ isAuthenticated, user }) => {
+const TodoList = ({ loadUser, isAuthenticated, user, loading }) => {
+  useEffect(() => {
+    loadUser();
+  }, [loadUser]);
+
   if (!isAuthenticated) {
     return <Redirect to='/login' />;
   }
 
-  // TODO:
-  if (user.todo) {
-    let todo = user.todo;
-    todo.forEach(item => {});
-  }
-
-  return (
+  return loading || user.todo === null ? (
+    <Spinner />
+  ) : (
     <Fragment>
-      <TodoItem />
-      <TodoItem />
-      <TodoItem />
-      <TodoItem />
-      <TodoItem />
-      <TodoItem />
-      <TodoItem />
-      <TodoItem />
+      {user.todo.map(item => (
+        <TodoItem
+          key={item._id}
+          content={item.content}
+          date={item.date}
+          location={item.location}
+        />
+      ))}
     </Fragment>
   );
 };
@@ -36,7 +38,8 @@ TodoList.propTypes = {
 
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
+  loading: state.auth.loading,
   user: state.auth.user,
 });
 
-export default connect(mapStateToProps)(TodoList);
+export default connect(mapStateToProps, { loadUser })(TodoList);

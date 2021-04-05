@@ -21,20 +21,6 @@ const UserSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-  todo: [
-    {
-      content: {
-        type: String,
-        required: true,
-      },
-      location: {
-        type: String,
-      },
-      time: {
-        type: Date,
-      },
-    },
-  ],
 });
 
 module.exports = mongoose.model('User', UserSchema);

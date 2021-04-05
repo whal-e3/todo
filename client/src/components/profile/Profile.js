@@ -7,6 +7,7 @@ const Profile = () => {
       Profile
       <Link to='/todo'>Back to TO:DO</Link>
     </Fragment>
+    //logout
   );
 };
 

@@ -6,6 +6,22 @@ const config = require('config');
 const auth = require('../../middleware/auth');
 // models
 const User = require('../../models/User');
+const Todo = require('../../models/Todo');
+
+// @route    GET api/todo
+// @desc     Get the todo list
+// @access   private
+router.get('/', auth, async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select('-password');
+    console.log(req);
+    const todos = await Todo.find({ user: user.id });
+    res.json(todos);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
 
 // @route    POST api/todo
 // @desc     Create a todo item in the list
@@ -20,21 +36,23 @@ router.post(
         res.status(400).json({ errors: errors.array() });
       }
 
-      const { content, location } = req.body;
+      const { content, location, date } = req.body;
 
-      const user = await User.findById(req.userId.id);
+      const todos = await Todo.findOne({ user: req.user.id });
 
-      let item = {
+      const item = {
         content,
         location,
+        date,
         time: new Date(),
       };
+      const todoList = todos.todos;
 
-      user.todo.unshift(item);
+      todoList.unshift(item);
 
-      await user.save();
+      await todos.save();
 
-      return res.json(user.todo);
+      return res.json(todos);
     } catch (err) {
       console.error(err.message);
       res.status(500).send('Server Error');
@@ -50,21 +68,23 @@ router.put(
   [auth, [check('content', 'Content is required').not().isEmpty()]],
   async (req, res) => {
     try {
-      const user = await User.findById(req.userId.id);
-      const item = user.todo.find(item => item.id === req.params.item_id);
+      const todos = await Todo.findOne({ user: req.user.id });
+      const todoList = todos.todos;
+      const item = todoList.find(item => item.id === req.params.item_id);
 
       if (!item) {
         return res.status(404).json({ msg: 'item does not exist' });
       }
 
-      const { content, location } = req.body;
+      const { content, location, date } = req.body;
 
       item.content = content;
       item.location = location;
+      item.date = date;
 
-      await user.save();
+      await todos.save();
 
-      return res.json(user.todo);
+      return res.json(todos);
     } catch (err) {
       console.error(err.message);
       res.status(500).send('Server Error');
@@ -77,18 +97,19 @@ router.put(
 // @access   private
 router.delete('/:item_id', auth, async (req, res) => {
   try {
-    const user = await User.findById(req.userId.id);
-    const item = user.todo.find(item => item.id === req.params.item_id);
+    const todos = await Todo.findOne({ user: req.user.id });
+    const todoList = todos.todos;
+    const item = todoList.find(item => item.id === req.params.item_id);
 
     if (!item) {
       return res.status(404).json({ msg: 'item does not exist' });
     }
 
-    user.todo = user.todo.filter(({ id }) => id !== req.params.item_id);
+    todos.todos = todos.todos.filter(({ id }) => id !== req.params.item_id);
 
-    await user.save();
+    await todos.save();
 
-    return res.json(user.todo);
+    return res.json(todos);
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server Error');
