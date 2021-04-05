@@ -12,3 +12,9 @@ export const USER_LOADED = 'USER_LOADED';
 export const AUTH_ERROR = 'AUTH_ERROR';
 
 export const CLEAR_PROFILE = 'CLEAR_PROFILE';
+
+export const TODO_CREATED = 'TODO_CREATED';
+export const TODO_LOADED = 'TODO_LOADED';
+export const TODO_UPDATED = 'TODO_UPDATED';
+export const TODO_DELETED = 'TODO_DELETED';
+export const TODO_ERROR = 'TODO_ERROR';

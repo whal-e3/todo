@@ -85,11 +85,11 @@ router.post(
   }
 );
 
-// @route    GET api/auth
+// @route    POST api/auth/login
 // @desc     Login(Authenticate) User -> get token
 // @access   Public
-router.get(
-  '/',
+router.post(
+  '/login',
   [
     check('email', 'Email is required').isEmail(),
     check('password', 'Password is required').exists(),

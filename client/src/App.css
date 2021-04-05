@@ -56,8 +56,12 @@
   justify-content: space-between;
   align-items: stretch;
 }
-.todo-date, .todo-loc {
-  width: 40%;
+.todo-date{
+  width: 50%;
+  margin: 0;
+}
+.todo-loc {
+  width: 30%;
   margin: 0;
 }
 .todo-del {

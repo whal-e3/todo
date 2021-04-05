@@ -14,7 +14,7 @@ const Todo = require('../../models/Todo');
 router.get('/', auth, async (req, res) => {
   try {
     const user = await User.findById(req.user.id).select('-password');
-    console.log(req);
+
     const todos = await Todo.find({ user: user.id });
     res.json(todos);
   } catch (err) {
