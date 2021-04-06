@@ -44,6 +44,10 @@
 /* </ Layout > */
 
 /* < ToDo > */
+.todo-content {
+  width: 88%;
+  margin: 0;
+}
 .todo-btn{
   display: flex;
   justify-content: center;
@@ -68,6 +72,13 @@
   justify-content: space-between;
   align-items: stretch;
 }
+.info-1 {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
 .todo-date{
   width: 50%;
   margin: 0;
@@ -88,6 +99,19 @@
 }
 .todo-del:hover {
   background-color: #d42335;
+}
+.todo-submit {
+  color: #fff;
+  text-align: center;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  border-radius: 5px;
+  width: 5%;
+  height: 100%;
+  background-color: #28a745;
+}
+.todo-submit:hover {
+  background-color: #108f2e;
 }
 /* </ ToDo > */
 

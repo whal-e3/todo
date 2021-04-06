@@ -27,8 +27,14 @@ export const getTodo = () => async dispatch => {
 };
 
 // Update Todo
-export const updateTodo = () => async dispatch => {
+export const updateTodo = (id, content, date, location) => async dispatch => {
   try {
+    const config = { headers: { 'Content-Type': 'application/json' } };
+    const data = { content, date, location };
+
+    await axios.put(`/api/todo/${id}`, data, config);
+
+    dispatch(getTodo());
   } catch (err) {
     dispatch({ type: TODO_ERROR });
   }
@@ -44,5 +50,3 @@ export const deleteTodo = id => async dispatch => {
     dispatch({ type: TODO_ERROR });
   }
 };
-
-// TODO: update todo
