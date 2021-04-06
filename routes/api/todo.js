@@ -38,7 +38,7 @@ router.post('/', auth, async (req, res) => {
       time: new Date(),
     };
 
-    todo.todos.unshift(item);
+    todo.todos.push(item);
 
     await todo.save();
 
