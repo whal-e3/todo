@@ -7,16 +7,33 @@ import {
   TODO_ERROR,
 } from './types';
 
-export const getTodo = () => async dispatch => {
+// Create Todo
+export const createTodo = () => async dispatch => {
   try {
-    const res = await axios.get('api/todo');
+    const config = { headers: { 'Content-Type': 'application/json' } };
 
-    dispatch({ type: TODO_LOADED, payload: res.data[0].todos });
+    const data = { content: '', location: '' };
+
+    const res = await axios.post('/api/todo', data, config);
+
+    dispatch({ type: TODO_CREATED, payload: res.data[0] });
   } catch (err) {
     dispatch({ type: TODO_ERROR });
   }
 };
 
+// Read Todo
+export const getTodo = () => async dispatch => {
+  try {
+    const res = await axios.get('/api/todo');
+
+    dispatch({ type: TODO_LOADED, payload: res.data[0] });
+  } catch (err) {
+    dispatch({ type: TODO_ERROR });
+  }
+};
+
+// Update Todo
 export const updateTodo = () => async dispatch => {
   try {
   } catch (err) {
@@ -24,6 +41,7 @@ export const updateTodo = () => async dispatch => {
   }
 };
 
+// Delete Todo
 export const deleteTodo = () => async dispatch => {
   try {
   } catch (err) {

@@ -24,41 +24,33 @@ router.get('/', auth, async (req, res) => {
 });
 
 // @route    POST api/todo
-// @desc     Create a todo item in the list
+// @desc     Create a empty todo item
 // @access   private
-router.post(
-  '/',
-  [auth, [check('content', 'Content is required').not().isEmpty()]],
-  async (req, res) => {
-    try {
-      const errors = validationResult(req);
-      if (!errors.isEmpty()) {
-        res.status(400).json({ errors: errors.array() });
-      }
+router.post('/', auth, async (req, res) => {
+  try {
+    const todos = await Todo.findOne({ user: req.user.id });
 
-      const { content, location, date } = req.body;
+    const { content, location } = req.body;
 
-      const todos = await Todo.findOne({ user: req.user.id });
+    const item = {
+      content: content,
+      date: new Date(),
+      location: location,
+      time: new Date(),
+    };
 
-      const item = {
-        content,
-        location,
-        date,
-        time: new Date(),
-      };
-      const todoList = todos.todos;
+    console.log(todos);
 
-      todoList.unshift(item);
+    todos.todos.unshift(item);
 
-      await todos.save();
+    await todos.save();
 
-      return res.json(todos);
-    } catch (err) {
-      console.error(err.message);
-      res.status(500).send('Server Error');
-    }
+    return res.json(todos);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
   }
-);
+});
 
 // @route    PUT api/todo/:item_id
 // @desc     Update a todo item in list

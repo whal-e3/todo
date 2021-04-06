@@ -1,20 +1,19 @@
 import React, { Fragment, useEffect } from 'react';
-import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import Spinner from '../layout/Spinner';
 import TodoItem from './TodoItem';
-import { getTodo } from '../../actions/todo';
+import { getTodo, createTodo } from '../../actions/todo';
 
-const TodoList = ({ getTodo, isAuthenticated, loading, todo }) => {
+const TodoList = ({ getTodo, createTodo, loading, todo }) => {
   useEffect(() => {
     getTodo();
   }, [getTodo]);
 
-  if (!isAuthenticated) {
-    return <Redirect to='/login' />;
-  }
+  const onClick = () => {
+    createTodo();
+  };
 
   return loading || todo === null ? (
     <Spinner />
@@ -28,18 +27,20 @@ const TodoList = ({ getTodo, isAuthenticated, loading, todo }) => {
           location={item.location}
         />
       ))}
+      <div className='todo-btn'>
+        <i className='fas fa-plus-circle fa-3x' onClick={e => onClick()}></i>
+      </div>
     </Fragment>
   );
 };
 
 TodoList.propTypes = {
-  isAuthenticated: PropTypes.bool,
+  todo: PropTypes.array,
 };
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated,
   loading: state.todo.loading,
   todo: state.todo.todo,
 });
 
-export default connect(mapStateToProps, { getTodo })(TodoList);
+export default connect(mapStateToProps, { getTodo, createTodo })(TodoList);

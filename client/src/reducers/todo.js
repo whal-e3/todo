@@ -14,13 +14,10 @@ export default function (state = initialState, action) {
 
   switch (type) {
     case TODO_CREATED:
-      return { ...state };
     case TODO_LOADED:
-      return { ...state, todo: payload, loading: false };
     case TODO_UPDATED:
-      return { ...state };
     case TODO_DELETED:
-      return { ...state };
+      return { ...state, todo: payload.todos, loading: false };
     case TODO_ERROR:
       return { ...state, todo: [], loading: false };
     default:
