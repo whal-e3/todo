@@ -18,13 +18,17 @@ const TodoList = ({ getTodo, createTodo, loading, todo }) => {
       {todo.map(item => (
         <TodoItem
           key={item._id}
+          item={item}
           content={item.content}
           date={item.date}
           location={item.location}
         />
       ))}
       <div className='todo-btn'>
-        <i className='fas fa-plus-circle fa-3x' onClick={e => createTodo()}></i>
+        <i
+          className='fas fa-plus-circle fa-3x plus-icon'
+          onClick={e => createTodo()}
+        ></i>
       </div>
     </Fragment>
   );

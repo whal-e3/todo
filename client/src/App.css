@@ -44,14 +44,16 @@
 /* </ Layout > */
 
 /* < ToDo > */
-.todo-btn {
+.todo-btn{
   display: flex;
   justify-content: center;
   align-items: center;
   color: rgb(87, 92, 200);
+}
+.plus-icon {
   text-shadow: 0 0 1.5px #333;
 }
-.todo-btn:hover {
+.plus-icon:hover {
   text-shadow: none;
 }
 .todo-item {
@@ -83,6 +85,9 @@
   margin: 0;
   border-radius: 5px;
   width: 5%;
+}
+.todo-del:hover {
+  background-color: #d42335;
 }
 /* </ ToDo > */
 

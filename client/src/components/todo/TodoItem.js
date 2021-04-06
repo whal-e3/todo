@@ -1,10 +1,9 @@
 import React, { Fragment } from 'react';
+import { connect } from 'react-redux';
 
-const TodoItem = ({ content, date, location }) => {
-  const onClick = e => {};
+import { deleteTodo } from '../../actions/todo';
 
-  const onChange = e => {};
-
+const TodoItem = ({ content, date, location, item, deleteTodo }) => {
   const dateFormat = new Date(date);
   let month = dateFormat.getMonth() + 1;
   if (month < 10) {
@@ -16,6 +15,12 @@ const TodoItem = ({ content, date, location }) => {
   }
   const year = dateFormat.getFullYear();
   const dateString = year + '-' + month + '-' + dates;
+
+  const onClick = e => {
+    deleteTodo(item._id);
+  };
+
+  const onChange = e => {};
 
   return (
     <Fragment>
@@ -51,4 +56,4 @@ const TodoItem = ({ content, date, location }) => {
   );
 };
 
-export default TodoItem;
+export default connect(null, { deleteTodo })(TodoItem);

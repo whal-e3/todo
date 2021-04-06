@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { TODO_LOADED, TODO_UPDATED, TODO_DELETED, TODO_ERROR } from './types';
+import { TODO_LOADED, TODO_ERROR } from './types';
 
 // Create Todo
 export const createTodo = () => async dispatch => {
@@ -35,9 +35,14 @@ export const updateTodo = () => async dispatch => {
 };
 
 // Delete Todo
-export const deleteTodo = () => async dispatch => {
+export const deleteTodo = id => async dispatch => {
   try {
+    await axios.delete(`/api/todo/${id}`);
+
+    dispatch(getTodo());
   } catch (err) {
     dispatch({ type: TODO_ERROR });
   }
 };
+
+// TODO: update todo
