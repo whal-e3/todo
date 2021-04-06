@@ -28,24 +28,21 @@ router.get('/', auth, async (req, res) => {
 // @access   private
 router.post('/', auth, async (req, res) => {
   try {
-    const todos = await Todo.findOne({ user: req.user.id });
-
+    const todo = await Todo.findOne({ user: req.user.id });
     const { content, location } = req.body;
 
     const item = {
-      content: content,
+      content,
       date: new Date(),
-      location: location,
+      location,
       time: new Date(),
     };
 
-    console.log(todos);
+    todo.todos.unshift(item);
 
-    todos.todos.unshift(item);
+    await todo.save();
 
-    await todos.save();
-
-    return res.json(todos);
+    return res.json(todo);
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server Error');
@@ -60,8 +57,8 @@ router.put(
   [auth, [check('content', 'Content is required').not().isEmpty()]],
   async (req, res) => {
     try {
-      const todos = await Todo.findOne({ user: req.user.id });
-      const todoList = todos.todos;
+      const todo = await Todo.findOne({ user: req.user.id });
+      const todoList = todo.todos;
       const item = todoList.find(item => item.id === req.params.item_id);
 
       if (!item) {
@@ -74,9 +71,9 @@ router.put(
       item.location = location;
       item.date = date;
 
-      await todos.save();
+      await todo.save();
 
-      return res.json(todos);
+      return res.json(todo);
     } catch (err) {
       console.error(err.message);
       res.status(500).send('Server Error');
@@ -89,19 +86,19 @@ router.put(
 // @access   private
 router.delete('/:item_id', auth, async (req, res) => {
   try {
-    const todos = await Todo.findOne({ user: req.user.id });
-    const todoList = todos.todos;
+    const todo = await Todo.findOne({ user: req.user.id });
+    const todoList = todo.todos;
     const item = todoList.find(item => item.id === req.params.item_id);
 
     if (!item) {
       return res.status(404).json({ msg: 'item does not exist' });
     }
 
-    todos.todos = todos.todos.filter(({ id }) => id !== req.params.item_id);
+    todo.todos = todo.todos.filter(({ id }) => id !== req.params.item_id);
 
-    await todos.save();
+    await todo.save();
 
-    return res.json(todos);
+    return res.json(todo);
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server Error');

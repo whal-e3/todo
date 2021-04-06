@@ -11,10 +11,6 @@ const TodoList = ({ getTodo, createTodo, loading, todo }) => {
     getTodo();
   }, [getTodo]);
 
-  const onClick = () => {
-    createTodo();
-  };
-
   return loading || todo === null ? (
     <Spinner />
   ) : (
@@ -28,7 +24,7 @@ const TodoList = ({ getTodo, createTodo, loading, todo }) => {
         />
       ))}
       <div className='todo-btn'>
-        <i className='fas fa-plus-circle fa-3x' onClick={e => onClick()}></i>
+        <i className='fas fa-plus-circle fa-3x' onClick={e => createTodo()}></i>
       </div>
     </Fragment>
   );

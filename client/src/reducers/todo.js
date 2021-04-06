@@ -1,6 +1,5 @@
 /* eslint-disable import/no-anonymous-default-export */
 import {
-  TODO_CREATED,
   TODO_LOADED,
   TODO_UPDATED,
   TODO_DELETED,
@@ -13,7 +12,6 @@ export default function (state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {
-    case TODO_CREATED:
     case TODO_LOADED:
     case TODO_UPDATED:
     case TODO_DELETED:

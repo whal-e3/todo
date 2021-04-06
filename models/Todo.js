@@ -10,6 +10,7 @@ const TodoSchema = new Schema({
     {
       content: {
         type: String,
+        default: '',
       },
       location: {
         type: String,

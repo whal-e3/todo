@@ -1,22 +1,15 @@
 import axios from 'axios';
-import {
-  TODO_CREATED,
-  TODO_LOADED,
-  TODO_UPDATED,
-  TODO_DELETED,
-  TODO_ERROR,
-} from './types';
+import { TODO_LOADED, TODO_UPDATED, TODO_DELETED, TODO_ERROR } from './types';
 
 // Create Todo
 export const createTodo = () => async dispatch => {
   try {
     const config = { headers: { 'Content-Type': 'application/json' } };
-
     const data = { content: '', location: '' };
 
-    const res = await axios.post('/api/todo', data, config);
+    await axios.post('/api/todo', data, config);
 
-    dispatch({ type: TODO_CREATED, payload: res.data[0] });
+    dispatch(getTodo());
   } catch (err) {
     dispatch({ type: TODO_ERROR });
   }
