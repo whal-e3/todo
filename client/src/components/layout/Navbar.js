@@ -1,15 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Link, Redirect } from 'react-router-dom';
 
-import { Link } from 'react-router-dom';
+import { logoutUser } from '../../actions/auth';
 
-const Navbar = ({ isAuthenticated }) => {
+const Navbar = ({ isAuthenticated, logoutUser }) => {
+  const logOut = () => {
+    alert('Are you sure you want to log out?');
+    logoutUser();
+    return <Redirect to='/' />;
+  };
+
   const menu = isAuthenticated ? (
     <div className='menu'>
-      <Link to='/profile'>profile</Link>
+      <Link to='/profile'>Profile</Link>
       {' | '}
-      <Link to='/friends'>friends</Link>
+      <span style={{ color: '#dc3545' }} onClick={() => logOut()}>
+        LogOut
+      </span>
     </div>
   ) : (
     <div className='menu'>
@@ -36,10 +45,11 @@ const Navbar = ({ isAuthenticated }) => {
 
 Navbar.propTypes = {
   isAuthenticated: PropTypes.bool,
+  logoutUser: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
 });
 
-export default connect(mapStateToProps)(Navbar);
+export default connect(mapStateToProps, { logoutUser })(Navbar);

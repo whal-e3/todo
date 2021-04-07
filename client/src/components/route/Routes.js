@@ -18,7 +18,6 @@ const Routes = () => {
         <Route exact path='/login' component={Login} />
         <PrivateRoute exact path='/todo' component={TodoList} />
         <PrivateRoute exact path='/profile' component={Profile} />
-        <PrivateRoute exact path='/friends' component={Friends} />
       </Switch>
     </div>
   );

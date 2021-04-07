@@ -5,9 +5,9 @@ import PropTypes from 'prop-types';
 
 import dateFormat from '../../utils/dateFormat';
 
-import { logoutUser, signoutUser } from '../../actions/auth';
+import { signoutUser } from '../../actions/auth';
 
-const Profile = ({ user, logoutUser, signoutUser }) => {
+const Profile = ({ user, signoutUser }) => {
   if (!user) {
     user = localStorage.getItem('profile');
   }
@@ -17,12 +17,6 @@ const Profile = ({ user, logoutUser, signoutUser }) => {
   const profile = { avatar, date, email, name };
 
   localStorage.setItem('profile', JSON.stringify(profile));
-
-  const logOut = () => {
-    alert('Are you sure you want to log out?');
-    logoutUser();
-    return <Redirect to='/' />;
-  };
 
   const signOut = () => {
     alert(
@@ -47,7 +41,6 @@ const Profile = ({ user, logoutUser, signoutUser }) => {
         </div>
       </div>
       <div className='logging'>
-        <button onClick={() => logOut()}>Log Out</button>
         <button onClick={() => signOut()} className='alert-danger'>
           Sign Out
         </button>
@@ -57,8 +50,11 @@ const Profile = ({ user, logoutUser, signoutUser }) => {
   );
 };
 
-Profile.propTypes = { user: PropTypes.object };
+Profile.propTypes = {
+  user: PropTypes.object,
+  signoutUser: PropTypes.func,
+};
 
 const mapStateToProps = state => ({ user: state.auth.user });
 
-export default connect(mapStateToProps, { logoutUser, signoutUser })(Profile);
+export default connect(mapStateToProps, { signoutUser })(Profile);
