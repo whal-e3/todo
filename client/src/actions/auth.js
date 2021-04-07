@@ -77,5 +77,15 @@ export const logoutUser = () => async dispatch => {
 
 // Signout User
 export const signoutUser = () => async dispatch => {
-  //TODO:
+  try {
+    await axios.delete('/api/auth');
+
+    dispatch({ type: CLEAR_PROFILE });
+  } catch (err) {
+    const errors = err.response.data.errors;
+    if (errors) {
+      errors.forEach(error => dispatch(setAlert(error.msg, 'danger')));
+    }
+    dispatch({ type: AUTH_ERROR });
+  }
 };

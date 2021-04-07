@@ -6,6 +6,8 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const gravatar = require('gravatar');
 const normalize = require('normalize-url');
+// middleware
+const auth = require('../../middleware/auth');
 // models
 const User = require('../../models/User');
 const Todo = require('../../models/Todo');
@@ -141,5 +143,20 @@ router.post(
     }
   }
 );
+
+// @route    DELETE api/auth
+// @desc     Clear profile & DB
+// @access   Private
+router.delete('/', auth, async (req, res) => {
+  try {
+    await User.findByIdAndDelete(req.user.id).select('-password');
+    await Todo.findOneAndDelete({ user: req.user.id });
+
+    dispatch({ type: CLEAR_PROFILE });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+});
 
 module.exports = router;

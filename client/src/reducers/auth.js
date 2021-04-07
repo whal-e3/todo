@@ -37,7 +37,18 @@ export default function (state = initialState, action) {
     case REGISTER_FAIL:
     case LOGOUT:
       localStorage.removeItem('token');
+      localStorage.removeItem('profile');
       return { ...state, token: null, isAuthenticated: false, loading: false };
+    case CLEAR_PROFILE:
+      localStorage.removeItem('token');
+      localStorage.removeItem('profile');
+      return {
+        ...state,
+        token: null,
+        user: null,
+        isAuthenticated: null,
+        loading: false,
+      };
     default:
       return state;
   }

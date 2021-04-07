@@ -115,6 +115,24 @@
 }
 /* </ ToDo > */
 
+/* < Profile > */
+.profile {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.profile > img {
+  width: 25%;
+  height: 25%;
+  margin: 0 auto;
+}
+.logging {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+/* </ Profile > */
+
 /* < Landing > */
 .quote {
   display: flex;
@@ -143,5 +161,9 @@
   }
   .todo-item {
     padding: 1rem;
+  }
+  .profile > img {
+    width: 45%;
+    height: 45%;
   }
 }

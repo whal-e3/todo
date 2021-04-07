@@ -2,6 +2,7 @@ import React, { Fragment, useState } from 'react';
 import { connect } from 'react-redux';
 
 import { deleteTodo, updateTodo } from '../../actions/todo';
+import dateFormat from '../../utils/dateFormat';
 
 const TodoItem = ({
   content,
@@ -19,19 +20,7 @@ const TodoItem = ({
 
   const { cont, day, loc } = itemInfo;
 
-  // date formating ---------- move to utils folder
-  const dateFormat = new Date(day);
-  let month = dateFormat.getMonth() + 1;
-  if (month < 10) {
-    month = '0' + month;
-  }
-  let dates = dateFormat.getDate();
-  if (dates < 10) {
-    dates = '0' + dates;
-  }
-  const year = dateFormat.getFullYear();
-  const dateString = year + '-' + month + '-' + dates;
-  // --------------------------
+  const dateString = dateFormat(day);
 
   const onClick = e => {
     deleteTodo(item._id);
