@@ -2,6 +2,7 @@ import React, { Fragment, useState } from 'react';
 import { connect } from 'react-redux';
 
 import { deleteTodo, updateTodo } from '../../actions/todo';
+import { setAlert } from '../../actions/alert';
 import dateFormat from '../../utils/dateFormat';
 
 const TodoItem = ({
@@ -11,6 +12,7 @@ const TodoItem = ({
   item,
   deleteTodo,
   updateTodo,
+  setAlert,
 }) => {
   const [itemInfo, setItemInfo] = useState({
     cont: content,
@@ -32,6 +34,7 @@ const TodoItem = ({
 
   const onSubmit = e => {
     updateTodo(item._id, cont, day, loc);
+    setAlert('TO:DO submitted!', 'success', 1000);
   };
 
   return (
@@ -76,4 +79,4 @@ const TodoItem = ({
   );
 };
 
-export default connect(null, { deleteTodo, updateTodo })(TodoItem);
+export default connect(null, { deleteTodo, updateTodo, setAlert })(TodoItem);
