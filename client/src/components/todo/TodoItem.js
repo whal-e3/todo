@@ -26,6 +26,7 @@ const TodoItem = ({
 
   const onClick = e => {
     deleteTodo(item._id);
+    setAlert('TO:DO Deleted!', 'success', 1000);
   };
 
   const onChange = e => {
