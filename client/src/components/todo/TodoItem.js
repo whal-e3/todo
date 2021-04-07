@@ -33,7 +33,7 @@ const TodoItem = ({
     setItemInfo({ ...itemInfo, [e.target.name]: e.target.value });
   };
 
-  const onSubmit = e => {
+  const onSubmit = () => {
     updateTodo(item._id, cont, day, loc);
     setAlert('TO:DO submitted!', 'success', 1000);
   };
@@ -50,7 +50,7 @@ const TodoItem = ({
             value={cont}
             onChange={e => onChange(e)}
           />
-          <div className='todo-submit' onClick={e => onSubmit(e)}>
+          <div className='todo-submit' onClick={() => onSubmit()}>
             \/
           </div>
         </div>

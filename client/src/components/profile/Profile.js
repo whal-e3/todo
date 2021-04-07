@@ -35,6 +35,7 @@ const Profile = ({ user, logoutUser, signoutUser }) => {
   return (
     <Fragment>
       <Link to='/todo'>Back to TO:DO</Link>
+      <h2>Profile</h2>
       <div className='profile'>
         <br />
         <img src={avatar} alt='profile' />
