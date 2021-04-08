@@ -4,12 +4,12 @@ const path = require('path');
 
 const app = express();
 
+connectDB();
+
 // Init Body Parser Middleware
 // app.use(): mounts middleware to the route(defualt: '/')
 // express.json(): parses incoming requests with JSON payloads
 app.use(express.json());
-
-connectDB();
 
 // Define Routes
 app.use('/api/auth', require('./routes/api/auth'));
