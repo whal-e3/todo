@@ -7,7 +7,6 @@ import Register from '../auth/Register';
 import Login from '../auth/Login';
 import TodoList from '../todo/TodoList';
 import Profile from '../profile/Profile';
-import Friends from '../friends/Friends';
 
 const Routes = () => {
   return (
