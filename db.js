@@ -3,7 +3,7 @@ const config = require('config');
 const dbURI = config.get('mongoURI');
 
 const connectDB = () => {
-  mongoose.connect(dbURI, {
+  mongoose.connect(process.env.MONGODB_URI || dbURI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,
