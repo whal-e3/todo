@@ -1,8 +1,8 @@
 # TODO 1.0.0
 
-> ToDo application for everyone
+ToDo(1.0.0) is where you can make a todo list 
 
-The ToDo(1.0.0) is where you can make a todo list and share it with your friends(2.0.0).
+➡️ Share it with your friends with TODO(2.0.0). (upcoming)
 
 ## Used tech
 
